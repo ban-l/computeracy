@@ -4,7 +4,7 @@
 
 当偏移量特别大时，limit效率会非常低。结合`order by`使用。
 
-```
+```sql
 select id from A order by id limit 90000,10;
 select id from A order by id  between 90000 and 90010;
 ```
@@ -15,7 +15,7 @@ select id from A order by id  between 90000 and 90010;
 
 可以使用`limit 1`或者`top 1`来终止[数据库索引]继续扫描整个表或索引。
 
-```
+```sql
 SELECT id FROM A LIKE 'abc%' limit 1;
 ```
 
@@ -53,7 +53,7 @@ INSERT into person(name,age) values
 
 **优化成num上设置默认值0**，确保表中num没有null值，`IS NULL`使用率极高，应注意**避免全表扫描。**
 
-```
+```sql
 SELECT id FROM A WHERE num=0;
 ```
 
@@ -95,7 +95,7 @@ SELECT id FROM A WHERE num=0;
 
 例如：
 
-```
+```sql
 CREATE INDEX idx_name_age ON employees(name, age);
 SELECT * FROM employees WHERE name = 'John';
 ```
@@ -104,7 +104,7 @@ SELECT * FROM employees WHERE name = 'John';
 
 但如果查询条件是：
 
-```
+```sql
 SELECT * FROM employees WHERE age = 30;
 ```
 
